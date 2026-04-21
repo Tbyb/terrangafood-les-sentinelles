@@ -72,7 +72,6 @@
 | `lint`      | `next lint`  | Vérifie la qualité du code                    |
 
 ---
-
 **Fichiers ignorés par Git (`.gitignore`) :**
 
 | Fichier/Dossier          | Raison de l'ignorance                                  |
