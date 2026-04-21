@@ -5,7 +5,7 @@ export default function Header() {
     <header className="header">
       <div className="header-content">
         <Link href="/" className="header-logo">
-          🍛 Terranga<span> Food - Les Sentilles</span>
+          🍛 Terranga<span> Food - Les Sentinelles</span>
         </Link>
         <nav className="header-nav">
           <Link href="/">Restaurants</Link>
