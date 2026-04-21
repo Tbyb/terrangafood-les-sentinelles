@@ -1,8 +1,10 @@
 # 🍛 TerrangaFood
 
+**Equipe** - LES SENTINELLES 
+
 Plateforme de commande de plats auprès de restaurants dakarois.
 
-**Projet pédagogique** — Architecture Logicielle 2 — L3 Génie Logiciel — UCAD / ESP
+**Projet pédagogique** — Architecture Logicielle 2 — L3 Génie Logiciel 
 
 ## Stack technique
 
@@ -88,7 +90,7 @@ terrangafood/
 ├── .gitignore
 └── README.md
 ```
-
+fg
 ## Licence
 
 Projet pédagogique — Usage académique uniquement.
