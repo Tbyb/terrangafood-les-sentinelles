@@ -93,7 +93,6 @@
 - La connexion à MongoDB Atlas a nécessité l'ajout de l'IP `0.0.0.0/0` dans Network Access
 
 ---
-
 ### Tests fonctionnels (par QA -- Mamadou Mathiam Thiam)
 
 - Fonctionnalités testées : ...
