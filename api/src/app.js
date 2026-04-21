@@ -1,3 +1,20 @@
+/**
+ * ============================================================================
+ * app.js — Point d'entrée de l'API TerrangaFood
+ * ============================================================================
+ * Ce fichier initialise le serveur Express et configure :
+ *   - les middlewares globaux (CORS, parsing JSON, logs Morgan)
+ *   - la connexion à MongoDB via Mongoose
+ *   - les routes principales (/api/restaurants, /api/plats)
+ *   - la gestion centralisée des erreurs
+ *
+ * Architecture : MVC (Modèles Mongoose → Routes Express → Contrôleurs)
+ * Port par défaut : 3001
+ *
+ * @author Marième Sambe (rôle DB - Lab 0)
+ * ============================================================================
+ */
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
