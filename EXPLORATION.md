@@ -103,5 +103,5 @@
 
 ### Synthèse (par CP -- Thiané Boye)
 
-- Ce qui fonctionne bien : ...
-- Ce qui manque (le 30%) : ...
+- **Ce qui fonctionne bien** : l'application démarre correctement, l'API répond, le frontend affiche les restaurants et les détails, le workflow Git collaboratif a été appliqué avec branches, issues, PR et merges
+- **Ce qui manque (le 30%)** : finaliser les livrables restants du projet, notamment les extensions prévues pour les prochains labs, la conteneurisation, le déploiement en production et la validation complète du workflow Git.
