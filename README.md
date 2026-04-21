@@ -85,3 +85,14 @@ terrangafood/
 ## Licence
 
 Projet pédagogique — Usage académique uniquement.
+
+
+## Fonctionnalités existantes
+
+- Affichage de la liste des restaurants
+- Consultation de la page détail d’un restaurant
+- Affichage des plats liés aux restaurants
+- API REST pour les restaurants
+- API REST pour les plats
+- Backend Express connecté à MongoDB
+- Frontend Next.js consommant l’API

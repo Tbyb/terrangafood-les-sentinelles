@@ -8,4 +8,4 @@
 | Marieme Sambe | DB | marieme005 |
 | Dialika Ndong | DF | dialika740 |
 | Dieynaba Cire Daff| DO | deyna14|
-|MAmadou Mathiam Thiam | QA | ------- |
+|MAmadou Mathiam Thiam | QA | mathiam1234 |

@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
 const Restaurant = require('../models/Restaurant');
 const Plat = require('../models/Plat');
 
-dotenv.config({ path: '../../.env' });
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 
 const restaurants = [
   {
@@ -99,7 +100,12 @@ const platsParRestaurant = {
 
 async function seed() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI;
+    if (!mongoUri) {
+      throw new Error('MONGODB_URI (ou MONGO_URI) est introuvable dans le fichier .env');
+    }
+
+    await mongoose.connect(mongoUri);
     console.log('✅ Connecté à MongoDB');
 
     // Nettoyer les collections existantes
