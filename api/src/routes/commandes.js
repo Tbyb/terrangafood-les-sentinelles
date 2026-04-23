@@ -14,7 +14,6 @@ router.get('/:id', commandeController.getById);
 // PATCH /api/commandes/:id/statut - Changer le statut
 router.patch('/:id/statut', commandeController.updateStatut);
 
-// DELETE /api/commandes/:id - Supprimer une commande
 router.delete('/:id', commandeController.delete);
 
 module.exports = router;

@@ -54,7 +54,6 @@ app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/plats', platRoutes);
 app.use('/api/commandes', commandeRoutes);
 
-// --- Gestion des erreurs ---
 app.use(errorHandler);
 
 // --- Connexion MongoDB et démarrage ---
