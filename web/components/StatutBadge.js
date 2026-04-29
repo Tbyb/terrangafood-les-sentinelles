@@ -20,7 +20,7 @@ export default function StatutBadge({ statut }) {
   const classe = statutClasses[statut] || "";
   const emoji = statutEmojis[statut] || "";
   return (
-    <span className={"statut-badge ${classe}"}>
+    <span className={`statut-badge ${classe}`}>
       {emoji} {statut}
     </span>
   );
