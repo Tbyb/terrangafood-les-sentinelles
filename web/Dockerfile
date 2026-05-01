@@ -17,7 +17,7 @@ COPY . .
 
 # Variable d' environnement pour l' URL de l' API
 # ( sera surcharg ée par docker - compose )
-ENV NEXT_PUBLIC_API_URL = http://localhost:3001/api
+#ENV NEXT_PUBLIC_API_URL = http://localhost:3001/api
 
 # Construire l' application Next .js
 RUN npm run build
@@ -26,4 +26,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Lancer en mode production
-CMD ["npm ", "start"]
+CMD ["npm", "start"]

@@ -29,20 +29,30 @@ const errorHandler = require('./middleware/errorHandler');
 // Charger .env seulement en développement local
 // En Docker, les variables sont injectées par
 // docker-compose via 'environment'
-const path = require('path');
-const envPath = path.resolve(__dirname, '../../.env');
-const fs = require('fs');
-if (fs.existsSync(envPath)) {
-  dotenv.config({ path: envPath });
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
 }
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // --- Middleware globaux ---
-app.use(cors());
+
 app.use(express.json());
 app.use(morgan('dev'));
+
+// Configuration CORS sécurisée
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',  // Frontend en développement local
+    'http://web:3000',        // Frontend dans Docker (si nécessaire)
+    'http://127.0.0.1:3000'   // Alternative pour localhost
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true  // Si vous utilisez des cookies/authentification
+};
+app.use(cors(corsOptions));
 
 // --- Routes ---
 app.get('/', (req, res) => {
