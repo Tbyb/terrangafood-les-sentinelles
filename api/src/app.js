@@ -41,16 +41,24 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'https://terrangafood-les-sentinelles.vercel.app',
-    process.env.FRONTEND_URL
-  ].filter(Boolean),
+  origin: function(origin, callback) {
+    const allowed = [
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'https://terrangafood-les-sentinelles.vercel.app',
+      process.env.FRONTEND_URL
+    ].filter(Boolean);
+    if (!origin || allowed.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS bloqué: ' + origin));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
 
 // --- Routes ---
 app.get('/', (req, res) => {
