@@ -20,6 +20,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 const restaurantRoutes = require('./routes/restaurants');
 const platRoutes = require('./routes/plats');
@@ -40,15 +41,17 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(cors());
 
 // Configuration CORS sécurisée
 const corsOptions = {
   origin: [
     'http://localhost:3000',  // Frontend en développement local
     'http://web:3000',        // Frontend dans Docker (si nécessaire)
-    'http://127.0.0.1:3000'   // Alternative pour localhost
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    'http://127.0.0.1:3000',  // Alternative pour localhost
+    process.env.FRONTEND_URL   // URL Vercel en production (ex: https://terrangafood-equipe.vercel.app)
+  ].filter(Boolean),  // Enlever les undefined
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true  // Si vous utilisez des cookies/authentification
 };
