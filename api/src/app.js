@@ -19,6 +19,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 const restaurantRoutes = require('./routes/restaurants');
 const platRoutes = require('./routes/plats');
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 // --- Middleware globaux ---
