@@ -38,7 +38,15 @@ const PORT = process.env.PORT || 3001;
 
 // --- Middleware globaux ---
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://terrangafood-les-sentinelles.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 200
+}));
+
+app.options('*', cors()); // ← gère les preflight
+
 app.use(express.json());
 app.use(morgan('dev'));
 
