@@ -19,7 +19,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-const cors = require('cors');
 
 const restaurantRoutes = require('./routes/restaurants');
 const platRoutes = require('./routes/plats');
@@ -38,24 +37,7 @@ const PORT = process.env.PORT || 3001;
 
 // --- Middleware globaux ---
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || origin.includes('vercel.app') || origin.includes('localhost')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  optionsSuccessStatus: 200
-}));
-
-app.options('*', cors());
-
-
-app.options('*', cors()); // ← gère les preflight
-
+app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
