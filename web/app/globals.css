@@ -1,23 +1,30 @@
-/* === TerrangaFood — Styles Globaux === */
-
+/* ============================================ */
+/* VARIABLES GLOBALES - PALETTE PHARMACIE      */
+/* ============================================ */
 :root {
-  --primary: #1B4332;
-  --primary-light: #2D6A4F;
-  --accent: #52B788;
-  --accent-light: #95D5B2;
-  --background: #FAFFF7;
-  --surface: #FFFFFF;
-  --text: #1A1A1A;
-  --text-light: #6B7280;
-  --border: #E5E7EB;
-  --error: #E76F51;
-  --warning: #F4A261;
-  --success: #2D6A4F;
-  --radius: 12px;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  /* Couleurs principales (pharmacie) */
+  --primary: #0D6EFD;          /* Bleu pharmaceutique (logo, boutons) */
+  --primary-light: #6EA8FE;    /* Bleu clair (hover, secondaires) */
+  --accent: #28A745;           /* Vert médical (médicaments, succès) */
+  --accent-light: #9AE6B4;     /* Vert clair (textes secondaires) */
+  --background: #F8F9FA;       /* Fond blanc cassé (propre et médical) */
+  --surface: #FFFFFF;          /* Surfaces blanches (cartes, formulaires) */
+  --text: #1A1A1A;             /* Texte principal (noir profond) */
+  --text-light: #6C757D;       /* Texte secondaire (gris) */
+  --border: #DEE2E6;           /* Bordures (gris clair médical) */
+  --error: #DC3545;            /* Rouge médical (urgences, erreurs) */
+  --warning: #FFC107;          /* Jaune médical (attention, avertissements) */
+  --success: #198754;          /* Vert succès (stocks disponibles) */
+
+  /* Styles communs */
+  --radius: 12px;              /* Bordures arrondies (douces et médicales) */
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);       /* Ombre légère */
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);    /* Ombre forte */
 }
 
+/* ============================================ */
+/* RESET & BASE - STYLES FONDAMENTAUX           */
+/* ============================================ */
 * {
   margin: 0;
   padding: 0;
@@ -25,29 +32,42 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   background-color: var(--background);
   color: var(--text);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Liens */
 a {
   color: var(--primary);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 a:hover {
   color: var(--accent);
 }
 
-/* === Layout === */
+/* ============================================ */
+/* LAYOUT - STRUCTURE GÉNÉRALE                 */
+/* ============================================ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* === Header === */
+/* Conteneur pour les pages internes */
+.page-container {
+  padding: 30px 0;
+  min-height: calc(100vh - 180px);
+}
+
+/* ============================================ */
+/* HEADER - BARRE DE NAVIGATION                */
+/* ============================================ */
 .header {
   background-color: var(--primary);
   color: white;
@@ -55,7 +75,7 @@ a:hover {
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .header-content {
@@ -68,7 +88,7 @@ a:hover {
 }
 
 .header-logo {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: white;
 }
@@ -79,256 +99,552 @@ a:hover {
 
 .header-nav {
   display: flex;
-  gap: 24px;
+  gap: 30px;
 }
 
 .header-nav a {
   color: var(--accent-light);
   font-weight: 500;
-  transition: color 0.2s;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  transition: all 0.2s;
 }
 
 .header-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
   color: white;
 }
 
-/* === Hero === */
+/* ============================================ */
+/* HERO - BANNIÈRE D'ACCUEIL                   */
+/* ============================================ */
 .hero {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: white;
   padding: 60px 20px;
   text-align: center;
   margin-bottom: 40px;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 12px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero p {
   font-size: 1.2rem;
   color: var(--accent-light);
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
-/* === Grille de restaurants === */
-.restaurants-grid {
+/* ============================================ */
+/* GRILLE DE MÉDICAMENTS                       */
+/* ============================================ */
+.medicaments-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
   padding: 0 20px;
   max-width: 1200px;
   margin: 0 auto 60px;
 }
 
-/* === Carte restaurant === */
-.restaurant-card {
+/* ============================================ */
+/* CARTE MÉDICAMENT - COMPOSANT PRINCIPAL       */
+/* ============================================ */
+.medicament-card {
   background: var(--surface);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border);
 }
 
-.restaurant-card:hover {
-  transform: translateY(-4px);
+.medicament-card:hover {
+  transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
 }
 
-.restaurant-card-image {
+.medicament-card-image {
   height: 180px;
   background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3rem;
+  color: white;
 }
 
-.restaurant-card-body {
+.medicament-card-body {
   padding: 20px;
 }
 
-.restaurant-card-body h3 {
-  font-size: 1.2rem;
-  margin-bottom: 4px;
-  color: var(--primary);
-}
-
-.restaurant-card-cuisine {
-  color: var(--text-light);
-  font-size: 0.9rem;
+.medicament-card-body h3 {
+  font-size: 1.1rem;
   margin-bottom: 8px;
-}
-
-.restaurant-card-address {
-  color: var(--text-light);
-  font-size: 0.85rem;
-  margin-bottom: 12px;
-}
-
-.restaurant-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.restaurant-card-note {
-  background: var(--accent);
-  color: white;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  color: var(--primary);
   font-weight: 600;
 }
 
-.restaurant-card-status {
-  font-size: 0.85rem;
-  font-weight: 500;
+.medicament-card-laboratoire {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  font-style: italic;
 }
 
-.status-open {
-  color: var(--success);
+.medicament-card-prix {
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
-.status-closed {
-  color: var(--error);
+.medicament-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+  margin-top: 15px;
 }
 
-/* === Page détail restaurant === */
-.restaurant-detail {
+.medicament-card-stock {
+  background: var(--success);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.medicament-card-urgent {
+  background: var(--error);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* ============================================ */
+/* PAGE DÉTAIL MÉDICAMENT                       */
+/* ============================================ */
+.medicament-detail {
   max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-.restaurant-detail-header {
+.medicament-detail-header {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
   color: white;
   padding: 40px;
   border-radius: var(--radius);
   margin-bottom: 32px;
+  text-align: center;
 }
 
-.restaurant-detail-header h1 {
+.medicament-detail-header h1 {
   font-size: 2rem;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
-.restaurant-detail-info {
+.medicament-detail-header .prix {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.medicament-detail-info {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
-  margin-top: 16px;
+  margin-top: 20px;
   font-size: 0.95rem;
   color: var(--accent-light);
 }
 
-.plats-section h2 {
+.medicament-detail-description {
+  margin: 30px 0;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.posologie-section h2,
+.indications-section h2 {
   font-size: 1.5rem;
   color: var(--primary);
   margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-light);
 }
 
-.plats-grid {
+/* ============================================ */
+/* FORMULAIRE DE COMMANDE (ORDONNANCE)         */
+/* ============================================ */
+.commande-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.commande-form {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+}
+
+.commande-form h2 {
+  color: var(--primary);
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+}
+
+.plats-selection {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.medicament-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.medicament-checkbox:hover {
+  border-color: var(--primary);
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+.medicament-checkbox.selected {
+  border-color: var(--primary);
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+.medicament-checkbox input[type="checkbox"] {
+  width: auto;
+  accent-color: var(--primary);
+}
+
+.medicament-checkbox-info {
+  flex: 1;
+}
+
+.medicament-checkbox-info .nom {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.medicament-checkbox-info .prix {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.total-section {
+  background: var(--primary);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.btn-commander {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-commander:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.btn-commander:disabled {
+  background: var(--text-light);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.form-message.success {
+  background: #D1FAE5;
+  color: var(--success);
+  border-left: 4px solid var(--success);
+}
+
+.form-message.error {
+  background: #FEE2E2;
+  color: var(--error);
+  border-left: 4px solid var(--error);
+}
+
+/* ============================================ */
+/* PAGE MES COMMANDES (HISTORIQUE)             */
+/* ============================================ */
+.commandes-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.commandes-page h1 {
+  color: var(--primary);
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+}
+
+.commandes-list {
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
-/* === Carte plat === */
-.plat-card {
+.commande-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px;
-  transition: box-shadow 0.2s;
-}
-
-.plat-card:hover {
   box-shadow: var(--shadow);
+  transition: all 0.2s;
 }
 
-.plat-card h4 {
-  font-size: 1.05rem;
-  color: var(--primary);
-  margin-bottom: 4px;
+.commande-card:hover {
+  box-shadow: var(--shadow-lg);
 }
 
-.plat-card-categorie {
-  display: inline-block;
-  background: var(--accent-light);
-  color: var(--primary);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.plat-card-description {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  margin-bottom: 12px;
-}
-
-.plat-card-footer {
+.commande-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 12px;
 }
 
-.plat-card-prix {
+.commande-card-header h3 {
+  color: var(--primary);
   font-size: 1.1rem;
+}
+
+.commande-card-details {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.commande-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.commande-montant {
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--primary);
 }
 
-.plat-card-dispo {
+/* ============================================ */
+/* STATUTS - BADGES D'ÉTAT                     */
+/* ============================================ */
+.statut-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* === Bouton retour === */
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 20px;
-  transition: color 0.2s;
+.statut-en-attente {
+  background: #FFF3CD;
+  color: #856404;
 }
 
-.back-link:hover {
-  color: var(--accent);
+.statut-confirmee {
+  background: #D1E7DD;
+  color: #0F5132;
 }
 
-/* === Loading === */
-.loading {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text-light);
-  font-size: 1.1rem;
+.statut-en-livraison {
+  background: #E2E3E5;
+  color: #495057;
 }
 
-/* === Error === */
-.error {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--error);
-  font-size: 1.1rem;
+.statut-livree {
+  background: #D1E7DD;
+  color: #0F5132;
 }
 
-/* === Footer === */
+.statut-annulee {
+  background: #F8D7DA;
+  color: #842029;
+}
+
+/* ============================================ */
+/* FOOTER - PIED DE PAGE                       */
+/* ============================================ */
 .footer {
   background: var(--primary);
-  color: var(--accent-light);
+  color: white;
   text-align: center;
-  padding: 24px;
+  padding: 30px 20px;
   margin-top: 60px;
   font-size: 0.9rem;
 }
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 16px 0;
+}
+
+.footer-links a {
+  color: var(--accent-light);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.footer-copyright {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================ */
+/* RÉPONSIVE - ADAPTATION MOBILE                */
+/* ============================================ */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .header-nav {
+    gap: 16px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .medicaments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .medicament-card-image {
+    height: 150px;
+    font-size: 2.5rem;
+  }
+}
+
+/* ============================================ */
+/* ANIMATIONS & TRANSITIONS                    */
+/* ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* ============================================ */
+/* UTILITAIRES - CLASSES RÉUTILISABLES         */
+/* ============================================ */
+.text-primary { color: var(--primary); }
+.text-accent { color: var(--accent); }
+.text-success { color: var(--success); }
+.text-error { color: var(--error); }
+.text-warning { color: var(--warning); }
+
+.bg-primary { background-color: var(--primary); }
+.bg-accent { background-color: var(--accent); }
+.bg-surface { background-color: var(--surface); }
+
+.p-2 { padding: 8px; }
+.p-3 { padding: 12px; }
+.p-4 { padding: 16px; }
